@@ -1,0 +1,119 @@
+/* The whole seat (avatar + label) is a button */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  padding: 0;
+
+  &:active .avatar {
+    transform: scale(0.88);
+    opacity: 0.9;
+  }
+}
+
+/* ─── Avatar circle ──────────────────────────────────────────────────────── */
+.avatar {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid transparent;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.avatarEmpty {
+  background: #252d3d;
+  border-color: #3d4f6a;
+  color: #9aa3b2;
+}
+
+/* Pulsing gold ring when waiting for user to pick their seat */
+.avatarSelectable {
+  background: #252d3d;
+  border-color: var(--gold);
+  color: var(--gold);
+  animation: pulse 1.6s infinite;
+}
+
+/* Colored player */
+.avatarColored {
+  border-width: 3px;
+  color: #fff;
+}
+
+/* My seat — gold */
+.avatarMine {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  color: #0d1117;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
+}
+
+.star {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.num {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Small dot indicating notes exist */
+.notesDot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 1.5px solid #0d1117;
+}
+
+/* ─── Label below avatar ─────────────────────────────────────────────────── */
+.label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.labelEmpty {
+  color: #9aa3b2;
+}
+
+.labelColored {
+  /* color set inline */
+}
+
+.labelMine {
+  color: var(--gold);
+}
+
+/* Stack amount below label */
+.stack {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: #c8d6e5;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45); }
+  50%       { box-shadow: 0 0 0 7px rgba(201, 168, 76, 0); }
+}

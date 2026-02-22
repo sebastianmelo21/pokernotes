@@ -1,0 +1,103 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  background: var(--bg-modal);
+  border-radius: 20px 20px 0 0;
+  padding: 12px 20px 36px;
+  width: 100%;
+  animation: slideUp 0.25s ease;
+}
+
+.handle {
+  width: 40px;
+  height: 4px;
+  background: #3d4f6a;
+  border-radius: 2px;
+  margin: 0 auto 20px;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 20px 16px;
+  background: var(--bg-card);
+  border: 2px solid #3d4f6a;
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  transition: border-color 0.15s, background 0.15s;
+
+  &:active {
+    border-color: var(--gold);
+    background: rgba(201, 168, 76, 0.1);
+    opacity: 1;
+  }
+}
+
+.optionNumber {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.optionLabel {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.cancelBtn {
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid #3d4f6a;
+
+  &:active {
+    background: rgba(255, 255, 255, 0.05);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
