@@ -49,16 +49,12 @@ export default function Seat({ seat, isMySeat, isSelecting, onTap }: Props) {
         {hasNotes && !isMySeat && <span className={styles.notesDot} />}
       </div>
 
-      {/* Label */}
-      <span
-        className={[
-          styles.label,
-          isMySeat ? styles.labelMine : seat.color ? styles.labelColored : styles.labelEmpty,
-        ].join(' ')}
-        style={seat.color && !isMySeat ? { color: seat.color } : {}}
-      >
-        {isMySeat ? 'Vos' : `#${seat.id}`}
-      </span>
+      {/* Label — solo para el asiento propio */}
+      {isMySeat && (
+        <span className={`${styles.label} ${styles.labelMine}`}>
+          Héroe
+        </span>
+      )}
 
       {/* Stack (only when set) */}
       {stackLabel && (

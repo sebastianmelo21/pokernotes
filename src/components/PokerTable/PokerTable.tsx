@@ -32,7 +32,7 @@ export default function PokerTable({ table, onSeatTap }: Props) {
         {/* Inner green felt */}
         <div className={styles.felt}>
           {isSelectingMySeat ? (
-            <p className={styles.hint}>Toca tu asiento</p>
+            <p className={styles.hint}>Seleccioná tu asiento</p>
           ) : (
             <span className={styles.logo}>♠</span>
           )}

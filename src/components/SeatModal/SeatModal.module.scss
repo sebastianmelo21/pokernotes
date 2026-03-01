@@ -65,16 +65,16 @@
 
 .setMySeatBtn {
   padding: 8px 14px;
-  background: rgba(201, 168, 76, 0.15);
+  background: rgba(0, 255, 65, 0.15);
   color: var(--gold);
   font-size: 0.8rem;
   font-weight: 600;
   border-radius: 20px;
-  border: 1px solid rgba(201, 168, 76, 0.4);
+  border: 1px solid rgba(0, 255, 65, 0.4);
   white-space: nowrap;
 
   &:active {
-    background: rgba(201, 168, 76, 0.25);
+    background: rgba(0, 255, 65, 0.25);
     opacity: 1;
   }
 }
@@ -182,6 +182,26 @@
   }
 }
 
+.thousandBtn {
+  padding: 0 12px;
+  height: 100%;
+  background: #1a2e1e;
+  -webkit-appearance: none;
+  appearance: none;
+  color: #00ff41;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: 1px solid #00cc33;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:active {
+    background: #1f3d24;
+    opacity: 1;
+  }
+}
+
 .stackSuffix {
   font-size: 0.8rem;
   color: var(--text-secondary);
@@ -236,16 +256,16 @@
 .changeSeatBtn {
   width: 100%;
   padding: 16px;
-  background: rgba(201, 168, 76, 0.1);
+  background: rgba(0, 255, 65, 0.1);
   color: var(--gold);
   font-size: 1rem;
   font-weight: 600;
   border-radius: var(--radius);
-  border: 1px solid rgba(201, 168, 76, 0.3);
+  border: 1px solid rgba(0, 255, 65, 0.3);
   margin-bottom: 12px;
 
   &:active {
-    background: rgba(201, 168, 76, 0.2);
+    background: rgba(0, 255, 65, 0.2);
     opacity: 1;
   }
 }

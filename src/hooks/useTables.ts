@@ -12,7 +12,7 @@ export function useTables() {
     []
   );
 
-  function createTable(playerCount: PlayerCount): TableData {
+  function createTable(playerCount: PlayerCount, name: string): TableData {
     const seats: SeatData[] = Array.from({ length: playerCount }, (_, i) => ({
       id: i + 1,
       color: null,
@@ -22,6 +22,7 @@ export function useTables() {
 
     const newTable: TableData = {
       id: generateId(),
+      name,
       playerCount,
       seats,
       mySeatId: null,

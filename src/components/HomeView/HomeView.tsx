@@ -14,8 +14,8 @@ export default function HomeView() {
   const [showCreate, setShowCreate] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
-  function handleCreate(playerCount: PlayerCount) {
-    const newTable = createTable(playerCount);
+  function handleCreate(playerCount: PlayerCount, name: string) {
+    const newTable = createTable(playerCount, name);
     setShowCreate(false);
     router.push(`/table/${newTable.id}`);
   }
@@ -74,12 +74,12 @@ export default function HomeView() {
                   className={styles.cardBody}
                   onClick={() => router.push(`/table/${table.id}`)}
                 >
-                  <div className={styles.cardIcon}>
-                    <TableIcon seats={table.playerCount} />
-                  </div>
                   <div className={styles.cardInfo}>
                     <span className={styles.cardTitle}>
-                      Mesa de {table.playerCount} jugadores
+                      {table.name || 'Mesa sin nombre'}
+                    </span>
+                    <span className={styles.cardPlayers}>
+                      {table.playerCount} jugadores
                     </span>
                     <span className={styles.cardDate}>
                       {formatRelativeDate(table.createdAt)}
@@ -110,21 +110,3 @@ export default function HomeView() {
   );
 }
 
-function TableIcon({ seats }: { seats: number }) {
-  return (
-    <svg viewBox="0 0 40 28" width="40" height="28" aria-hidden="true">
-      <ellipse
-        cx="20"
-        cy="14"
-        rx="18"
-        ry="11"
-        fill="#1a4f2e"
-        stroke="#b8962e"
-        strokeWidth="1.5"
-      />
-      <text x="20" y="18" textAnchor="middle" fill="#c9a84c" fontSize="9" fontWeight="bold">
-        {seats}p
-      </text>
-    </svg>
-  );
-}

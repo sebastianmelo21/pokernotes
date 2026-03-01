@@ -7,40 +7,40 @@
   flex-shrink: 0;
 }
 
-/* ─── Outer rail (dark oval, like the PokerStars table edge) ─────────────── */
+/* ─── Outer rail (dark pill/stadium shape) ───────────────────────────────── */
 .rail {
   position: absolute;
-  inset: 4%;                         /* 92% of container each side */
-  border-radius: 50%;
-  background: linear-gradient(160deg, #353840 0%, #22252d 60%, #1a1d24 100%);
+  inset: 2.4% 4%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #2e3035 0%, #1c1e22 60%, #131416 100%);
   box-shadow:
-    0 0 0 2px #111318,               /* thin outer ring */
-    0 10px 40px rgba(0, 0, 0, 0.85),  /* depth shadow */
+    0 0 0 2px #0d0e10,               /* thin outer ring */
+    0 10px 40px rgba(0, 0, 0, 0.9),  /* depth shadow */
     inset 0 3px 10px rgba(255, 255, 255, 0.04), /* top highlight */
-    inset 0 -4px 12px rgba(0, 0, 0, 0.5);       /* inner bottom shadow */
+    inset 0 -4px 12px rgba(0, 0, 0, 0.6);       /* inner bottom shadow */
 }
 
 /* ─── Inner green felt ───────────────────────────────────────────────────── */
 .felt {
   position: absolute;
-  inset: 6.5%;                       /* creates ~13px rail width at reference size */
-  border-radius: 50%;
+  inset: 3.9% 6.5%;
+  border-radius: 9999px;
   background: radial-gradient(
-    ellipse at 45% 38%,
-    #1e6b3c 0%,
-    #155c30 50%,
-    #104825 100%
+    ellipse at 50% 38%,
+    #1a5c30 0%,
+    #0f3d20 45%,
+    #082a14 100%
   );
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 4px 30px rgba(0, 0, 0, 0.65);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .hint {
-  font-size: 0.72rem;
-  color: rgba(201, 168, 76, 0.85);
+  font-size: 0.85rem;
+  color: rgba(0, 255, 65, 0.85);
   font-weight: 700;
   text-align: center;
   padding: 0 12px;

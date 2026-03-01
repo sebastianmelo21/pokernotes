@@ -109,11 +109,6 @@
   text-align: left;
 }
 
-.cardIcon {
-  flex-shrink: 0;
-  opacity: 0.9;
-}
-
 .cardInfo {
   flex: 1;
   display: flex;
@@ -125,6 +120,12 @@
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
+}
+
+.cardPlayers {
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-weight: 500;
 }
 
 .cardDate {

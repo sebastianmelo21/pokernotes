@@ -34,6 +34,12 @@ export default function SeatModal({
     setStackInput(seat.stack != null ? String(seat.stack) : '');
   }, [seat.id, seat.color, seat.notes, seat.stack]);
 
+  function handleAddThreeZeros() {
+    if (stackInput.trim() === '') return;
+    const val = Number(stackInput);
+    if (!isNaN(val)) setStackInput(String(val * 1000));
+  }
+
   function handleSave() {
     const parsed = stackInput.trim() === '' ? null : Number(stackInput);
     const stack = parsed !== null && !isNaN(parsed) && parsed >= 0 ? parsed : null;
@@ -76,7 +82,13 @@ export default function SeatModal({
                 value={stackInput}
                 onChange={(e) => setStackInput(e.target.value)}
               />
-              <span className={styles.stackSuffix}>fichas</span>
+              <button
+                type="button"
+                className={styles.thousandBtn}
+                onClick={handleAddThreeZeros}
+              >
+                +000
+              </button>
             </div>
           </section>
 
@@ -152,7 +164,13 @@ export default function SeatModal({
               value={stackInput}
               onChange={(e) => setStackInput(e.target.value)}
             />
-            <span className={styles.stackSuffix}>fichas</span>
+            <button
+              type="button"
+              className={styles.thousandBtn}
+              onClick={handleAddThreeZeros}
+            >
+              +000
+            </button>
           </div>
         </section>
 

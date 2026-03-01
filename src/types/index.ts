@@ -9,6 +9,7 @@ export interface SeatData {
 
 export interface TableData {
   id: string;
+  name: string;
   playerCount: PlayerCount;
   seats: SeatData[];
   mySeatId: number | null;

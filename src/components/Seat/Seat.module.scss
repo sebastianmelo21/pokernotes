@@ -32,12 +32,12 @@
   color: #9aa3b2;
 }
 
-/* Pulsing gold ring when waiting for user to pick their seat */
+/* Pulsing ring when waiting for user to pick their seat */
 .avatarSelectable {
-  background: #252d3d;
+  background: rgba(0, 255, 65, 0.08);
   border-color: var(--gold);
   color: var(--gold);
-  animation: pulse 1.6s infinite;
+  animation: pulse 1.3s ease-in-out infinite;
 }
 
 /* Colored player */
@@ -51,7 +51,7 @@
   background: var(--gold);
   border-color: var(--gold-light);
   color: #0d1117;
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 255, 65, 0.3);
 }
 
 .star {
@@ -114,6 +114,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.45); }
-  50%       { box-shadow: 0 0 0 7px rgba(201, 168, 76, 0); }
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7), 0 0 8px rgba(0, 255, 65, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 65, 0), 0 0 16px rgba(0, 255, 65, 0.1);
+    transform: scale(1.08);
+  }
 }
