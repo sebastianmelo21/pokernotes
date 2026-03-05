@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './StackInput.module.scss';
 
 interface StackInputProps {
@@ -19,6 +19,7 @@ function formatDisplay(val: string): string {
 export default function StackInput({ title, onConfirm }: StackInputProps) {
   const [value, setValue] = useState('');
   const [baseValue, setBaseValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const parsed = parseInt(value, 10);
   const isValid = !isNaN(parsed) && parsed > 0;
@@ -32,6 +33,7 @@ export default function StackInput({ title, onConfirm }: StackInputProps) {
     const n = parseInt(baseValue, 10);
     if (isNaN(n) || n <= 0) return;
     setValue((n * mult).toString());
+    inputRef.current?.focus();
   }
 
   return (
@@ -42,6 +44,7 @@ export default function StackInput({ title, onConfirm }: StackInputProps) {
 
         <div className={styles.inputRow}>
           <input
+            ref={inputRef}
             className={styles.input}
             type="number"
             inputMode="numeric"

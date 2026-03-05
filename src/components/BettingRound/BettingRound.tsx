@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { ActionType, HandData } from '@/types';
 import { POSITIONS } from '@/constants/hand';
 import styles from './BettingRound.module.scss';
@@ -29,6 +29,7 @@ export default function BettingRound({
   const [pendingAction, setPendingAction] = useState<'bet' | 'raise' | null>(null);
   const [amountInput, setAmountInput] = useState('');
   const [amountBase, setAmountBase] = useState('');
+  const amountInputRef = useRef<HTMLInputElement>(null);
 
   const street = hand.state.toLowerCase() as 'preflop' | 'flop' | 'turn' | 'river';
 
@@ -74,12 +75,14 @@ export default function BettingRound({
     const n = parseInt(amountBase, 10);
     if (isNaN(n) || n <= 0) return;
     setAmountInput((n * 1_000).toString());
+    amountInputRef.current?.focus();
   }
 
   function handleMillion() {
     const n = parseInt(amountBase, 10);
     if (isNaN(n) || n <= 0) return;
     setAmountInput((n * 1_000_000).toString());
+    amountInputRef.current?.focus();
   }
 
   function handleTap(action: ActionType) {
@@ -179,6 +182,7 @@ export default function BettingRound({
           )}
           <div className={styles.amountRow}>
             <input
+              ref={amountInputRef}
               className={styles.amountInput}
               type="number"
               inputMode="numeric"
