@@ -41,12 +41,6 @@
   padding: 4px 8px;
 }
 
-.hint {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-top: -8px;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(13, 1fr);
@@ -140,7 +134,9 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+  min-height: 52px;
 }
 
 .previewCard {
@@ -152,4 +148,9 @@
   padding: 6px 12px;
   min-width: 52px;
   text-align: center;
+}
+
+.previewEmpty {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }

@@ -28,6 +28,7 @@ export default function BettingRound({
 }: BettingRoundProps) {
   const [pendingAction, setPendingAction] = useState<'bet' | 'raise' | null>(null);
   const [amountInput, setAmountInput] = useState('');
+  const [amountBase, setAmountBase] = useState('');
 
   const street = hand.state.toLowerCase() as 'preflop' | 'flop' | 'turn' | 'river';
 
@@ -64,10 +65,28 @@ export default function BettingRound({
     limp: 'Limp',
   };
 
+  function handleAmountChange(raw: string) {
+    setAmountInput(raw);
+    setAmountBase(raw);
+  }
+
+  function handleKilo() {
+    const n = parseInt(amountBase, 10);
+    if (isNaN(n) || n <= 0) return;
+    setAmountInput((n * 1_000).toString());
+  }
+
+  function handleMillion() {
+    const n = parseInt(amountBase, 10);
+    if (isNaN(n) || n <= 0) return;
+    setAmountInput((n * 1_000_000).toString());
+  }
+
   function handleTap(action: ActionType) {
     if (action === 'bet' || action === 'raise') {
       setPendingAction(action);
       setAmountInput('');
+      setAmountBase('');
     } else {
       onAction(action);
     }
@@ -79,6 +98,7 @@ export default function BettingRound({
     onAction(pendingAction, isNaN(parsed) ? undefined : parsed);
     setPendingAction(null);
     setAmountInput('');
+    setAmountBase('');
   }
 
   function handleAmountSkip() {
@@ -86,6 +106,7 @@ export default function BettingRound({
     onAction(pendingAction);
     setPendingAction(null);
     setAmountInput('');
+    setAmountBase('');
   }
 
   const parsedAmount = parseInt(amountInput, 10);
@@ -161,11 +182,25 @@ export default function BettingRound({
               className={styles.amountInput}
               type="number"
               inputMode="numeric"
-              placeholder="ej: 5000"
+              placeholder="ej: 80"
               value={amountInput}
-              onChange={(e) => setAmountInput(e.target.value)}
+              onChange={(e) => handleAmountChange(e.target.value)}
               autoFocus
             />
+            <button
+              className={styles.multBtn}
+              onClick={handleKilo}
+              disabled={!amountBase || parseInt(amountBase, 10) <= 0}
+            >
+              ×k
+            </button>
+            <button
+              className={styles.multBtn}
+              onClick={handleMillion}
+              disabled={!amountBase || parseInt(amountBase, 10) <= 0}
+            >
+              ×M
+            </button>
             {amountValid && (
               <span className={styles.amountFormatted}>{formatAmount(parsedAmount)}</span>
             )}

@@ -88,6 +88,22 @@
   -moz-appearance: textfield;
 }
 
+.multBtn {
+  align-self: stretch;
+  padding: 0 10px;
+  background: rgba(0, 255, 65, 0.06);
+  color: #2ecc71;
+  border: 1px solid rgba(0, 255, 65, 0.25);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:disabled { opacity: 0.25; cursor: not-allowed; }
+  &:active:not(:disabled) { background: rgba(0, 255, 65, 0.18); opacity: 1; }
+}
+
 .amountFormatted {
   font-size: 0.9rem;
   font-weight: 700;

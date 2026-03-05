@@ -65,9 +65,22 @@ export default function CardSelector({
           )}
         </div>
 
-        <p className={styles.hint}>
-          Seleccioná {count} carta{count !== 1 ? 's' : ''} ({selected.length}/{count})
-        </p>
+        <div className={styles.preview}>
+          {selected.map((c, i) => {
+            if (c === '?') return <span key={i} className={styles.previewCard}>??</span>;
+            const { rank, suit } = parseCard(c);
+            return (
+              <span key={i} className={styles.previewCard} style={{ color: SUIT_COLORS[suit] }}>
+                {rank}{SUIT_SYMBOLS[suit]}
+              </span>
+            );
+          })}
+          {selected.length === 0 && (
+            <span className={styles.previewEmpty}>
+              Seleccioná {count} carta{count !== 1 ? 's' : ''} ({selected.length}/{count})
+            </span>
+          )}
+        </div>
 
         <div className={styles.grid}>
           {SUITS.map((suit) =>
@@ -111,24 +124,6 @@ export default function CardSelector({
             Confirmar
           </button>
         </div>
-
-        {selected.length > 0 && (
-          <div className={styles.preview}>
-            {selected.map((c, i) => {
-              if (c === '?') return <span key={i} className={styles.previewCard}>??</span>;
-              const { rank, suit } = parseCard(c);
-              return (
-                <span
-                  key={i}
-                  className={styles.previewCard}
-                  style={{ color: SUIT_COLORS[suit] }}
-                >
-                  {rank}{SUIT_SYMBOLS[suit]}
-                </span>
-              );
-            })}
-          </div>
-        )}
       </div>
     </div>
   );
