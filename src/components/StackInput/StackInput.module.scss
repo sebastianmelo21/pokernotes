@@ -58,6 +58,28 @@
   -moz-appearance: textfield;
 }
 
+.multBtn {
+  padding: 10px 12px;
+  background: rgba(0, 255, 65, 0.06);
+  color: #2ecc71;
+  border: 1px solid rgba(0, 255, 65, 0.25);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(0, 255, 65, 0.18);
+    opacity: 1;
+  }
+}
+
 .formatted {
   font-size: 1rem;
   font-weight: 700;

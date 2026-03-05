@@ -18,9 +18,21 @@ function formatDisplay(val: string): string {
 
 export default function StackInput({ title, onConfirm }: StackInputProps) {
   const [value, setValue] = useState('');
+  const [baseValue, setBaseValue] = useState('');
 
   const parsed = parseInt(value, 10);
   const isValid = !isNaN(parsed) && parsed > 0;
+
+  function handleChange(raw: string) {
+    setValue(raw);
+    setBaseValue(raw); // reset base whenever user types
+  }
+
+  function applyMultiplier(mult: number) {
+    const n = parseInt(baseValue, 10);
+    if (isNaN(n) || n <= 0) return;
+    setValue((n * mult).toString());
+  }
 
   return (
     <div className={styles.overlay}>
@@ -33,11 +45,25 @@ export default function StackInput({ title, onConfirm }: StackInputProps) {
             className={styles.input}
             type="number"
             inputMode="numeric"
-            placeholder="ej: 80000"
+            placeholder="ej: 80"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => handleChange(e.target.value)}
             autoFocus
           />
+          <button
+            className={styles.multBtn}
+            onClick={() => applyMultiplier(1_000)}
+            disabled={!isValid}
+          >
+            ×k
+          </button>
+          <button
+            className={styles.multBtn}
+            onClick={() => applyMultiplier(1_000_000)}
+            disabled={!isValid}
+          >
+            ×M
+          </button>
           {isValid && (
             <span className={styles.formatted}>{formatDisplay(value)}</span>
           )}
