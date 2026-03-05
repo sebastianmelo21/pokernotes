@@ -202,7 +202,12 @@ export function useHandEngine(handId: string) {
         bettingRound.activeTurnOrder[bettingRound.currentTurnIndex];
       if (position == null) return;
 
-      const handAction: HandAction = { position, action, amount };
+      // Resolve amount for actions that don't receive it explicitly
+      let resolvedAmount = amount;
+      if (action === 'call') resolvedAmount = bettingRound.currentBet;
+      if (action === 'limp') resolvedAmount = bettingRound.currentBet || 1;
+
+      const handAction: HandAction = { position, action, amount: resolvedAmount };
 
       // Update actions list
       const updatedActions = {
@@ -273,10 +278,8 @@ export function useHandEngine(handId: string) {
 
       // Update pot
       let potDelta = 0;
-      if (action === 'bet' || action === 'raise') {
-        potDelta = amount ?? 0;
-      } else if (action === 'call') {
-        potDelta = updatedBetting.currentBet;
+      if (action === 'bet' || action === 'raise' || action === 'call' || action === 'limp') {
+        potDelta = resolvedAmount ?? 0;
       }
       const updatedPot = (hand.pot ?? 0) + potDelta;
 
