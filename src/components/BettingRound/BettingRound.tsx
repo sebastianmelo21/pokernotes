@@ -122,12 +122,16 @@ export default function BettingRound({
     if (!hand.pot) return;
     const val = Math.round((hand.pot * pct) / 100);
     setAmountInput(val.toString());
+    setAmountBase(val.toString());
+    amountInputRef.current?.focus();
   }
 
   function handleMultiplierBtn(mult: number) {
     if (!currentBet) return;
     const val = Math.round(currentBet * mult);
     setAmountInput(val.toString());
+    setAmountBase(val.toString());
+    amountInputRef.current?.focus();
   }
 
   return (
