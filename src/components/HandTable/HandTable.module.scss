@@ -1,0 +1,274 @@
+/* Same visual structure as PokerTable — Reference: 320 x 540 */
+.tableContainer {
+  position: relative;
+  width: min(calc(100vw - 40px), 310px);
+  aspect-ratio: 320 / 540;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+/* ─── Outer rail ──────────────────────────────────────────────────────────── */
+.rail {
+  position: absolute;
+  inset: 2.4% 4%;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #2e3035 0%, #1c1e22 60%, #131416 100%);
+  box-shadow:
+    0 0 0 2px #0d0e10,
+    0 10px 40px rgba(0, 0, 0, 0.9),
+    inset 0 3px 10px rgba(255, 255, 255, 0.04),
+    inset 0 -4px 12px rgba(0, 0, 0, 0.6);
+}
+
+/* ─── Inner green felt ────────────────────────────────────────────────────── */
+.felt {
+  position: absolute;
+  inset: 3.9% 6.5%;
+  border-radius: 9999px;
+  background: radial-gradient(
+    ellipse at 50% 38%,
+    #1a5c30 0%,
+    #0f3d20 45%,
+    #082a14 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 4px 30px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: rgba(0, 255, 65, 0.85);
+  font-weight: 700;
+  text-align: center;
+  padding: 0 12px;
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+.logo {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.06);
+  user-select: none;
+}
+
+/* ─── Board cards on felt ─────────────────────────────────────────────────── */
+.board {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 8px;
+}
+
+.boardCard {
+  font-size: 0.85rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  padding: 2px 5px;
+  line-height: 1.3;
+}
+
+.pot {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ─── Seat wrapper ────────────────────────────────────────────────────────── */
+.seatWrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* ─── Dealer chip ─────────────────────────────────────────────────────────── */
+.dealerWrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 8;
+  pointer-events: none;
+}
+
+.dealerChip {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #cccccc);
+  border: 2px solid #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #222;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255,255,255,0.6);
+}
+
+/* ─── Seat button ─────────────────────────────────────────────────────────── */
+.seatBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  padding: 0;
+
+  &:active .avatar {
+    transform: scale(0.88);
+    opacity: 0.9;
+  }
+}
+
+/* ─── Avatar circle ───────────────────────────────────────────────────────── */
+.avatar {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid transparent;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.avatarEmpty {
+  background: #252d3d;
+  border-color: #3d4f6a;
+  color: #9aa3b2;
+}
+
+.avatarSelectable {
+  background: rgba(0, 255, 65, 0.08);
+  border-color: var(--gold);
+  color: var(--gold);
+  animation: pulse 1.3s ease-in-out infinite;
+}
+
+.avatarMine {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  color: #0d1117;
+  box-shadow: 0 0 0 3px rgba(0, 255, 65, 0.3);
+}
+
+.avatarInHand {
+  background: #252d3d;
+  border-color: #5b8dd9;
+  color: var(--text-primary);
+}
+
+.avatarRivalSelected {
+  background: rgba(91, 141, 217, 0.2);
+  border-color: #5b8dd9;
+  color: var(--text-primary);
+  box-shadow: 0 0 0 3px rgba(91, 141, 217, 0.3);
+  animation: pulseBlue 1.3s ease-in-out infinite;
+}
+
+.avatarCurrentTurn {
+  background: rgba(241, 196, 15, 0.15);
+  border-color: #f1c40f;
+  color: #f1c40f;
+  box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.3);
+  animation: pulseYellow 1s ease-in-out infinite alternate;
+}
+
+.avatarFolded {
+  background: #1a1f2e;
+  border-color: #2a3040;
+  color: #4a5568;
+  opacity: 0.45;
+}
+
+/* ─── Text inside avatar ──────────────────────────────────────────────────── */
+.star {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.posNum {
+  font-size: 0.6rem;
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+/* ─── Labels below avatar ─────────────────────────────────────────────────── */
+.labelMine {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--gold);
+  background: rgba(0, 0, 0, 0.55);
+  padding: 2px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.cardLabel {
+  font-size: 0.6rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: flex;
+  gap: 2px;
+  line-height: 1.2;
+}
+
+.cardUnknown {
+  color: var(--text-secondary);
+}
+
+.foldedLabel {
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #e74c3c;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1px 4px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+/* ─── Animations ──────────────────────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7), 0 0 8px rgba(0, 255, 65, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 65, 0), 0 0 16px rgba(0, 255, 65, 0.1);
+    transform: scale(1.08);
+  }
+}
+
+@keyframes pulseBlue {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(91, 141, 217, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(91, 141, 217, 0);
+    transform: scale(1.06);
+  }
+}
+
+@keyframes pulseYellow {
+  from { box-shadow: 0 0 6px rgba(241, 196, 15, 0.4), 0 0 0 2px rgba(241, 196, 15, 0.2); }
+  to   { box-shadow: 0 0 14px rgba(241, 196, 15, 0.8), 0 0 0 4px rgba(241, 196, 15, 0.4); }
+}

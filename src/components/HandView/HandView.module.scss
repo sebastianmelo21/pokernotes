@@ -1,0 +1,222 @@
+.container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 8px;
+}
+
+.backBtn {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 6px 0;
+
+  &:active {
+    color: var(--text-primary);
+    opacity: 1;
+  }
+}
+
+.stateLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tableSection {
+  display: flex;
+  justify-content: center;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.downloadBtn {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  color: var(--gold);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--gold);
+  letter-spacing: 0.5px;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:active:not(:disabled) {
+    background: rgba(0, 255, 65, 0.08);
+    opacity: 1;
+  }
+}
+
+.primaryBtn {
+  width: 100%;
+  padding: 16px;
+  background: var(--gold);
+  color: #0d1117;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+
+  &:disabled {
+    background: #3d4f6a;
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  &:active:not(:disabled) {
+    background: var(--gold-light);
+    opacity: 1;
+  }
+}
+
+.showdown {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #252d3d;
+}
+
+.showdownTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--gold);
+  text-align: center;
+}
+
+.showdownPot {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-align: center;
+  strong { color: var(--gold); }
+}
+
+.showdownPlayer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #252d3d;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.posName {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.showdownCards {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.finished {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+}
+
+.finishedIcon {
+  font-size: 3rem;
+  opacity: 0.5;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 100dvh;
+  color: var(--text-secondary);
+}
+
+.backLink {
+  background: transparent;
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.playersSummary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.playerChip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid #3d4f6a;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+}
+
+.foldedChip {
+  opacity: 0.4;
+  border-style: dashed;
+}
+
+.chipPos {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chipHero {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #0d1117;
+  background: var(--gold);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+.chipStack {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.chipFolded {
+  font-size: 0.65rem;
+  color: var(--danger);
+  font-weight: 700;
+}

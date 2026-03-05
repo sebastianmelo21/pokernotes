@@ -1,0 +1,312 @@
+// Designed for screenshots — dark, compact, self-contained
+.wrapper {
+  background: #0d1117;
+  border: 1px solid #252d3d;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+// ── Header ───────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: #111827;
+  border-bottom: 1px solid #252d3d;
+}
+
+.logo {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.potBadge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0d1117;
+  background: var(--gold);
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+// ── Players row ──────────────────────────────────────────────────────────────
+.players {
+  display: flex;
+  gap: 6px;
+  padding: 12px 16px;
+  overflow-x: auto;
+  border-bottom: 1px solid #1a2236;
+  // hide scrollbar
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.playerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: #161b27;
+  border: 1px solid #252d3d;
+  border-radius: 10px;
+  padding: 8px 10px;
+  min-width: 68px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.heroCard {
+  border-color: var(--gold);
+  background: rgba(0, 255, 65, 0.05);
+}
+
+.folded {
+  opacity: 0.4;
+  border-style: dashed;
+}
+
+.playerTop {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.playerPos {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.heroMark {
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #0d1117;
+  background: var(--gold);
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.playerStack {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.playerCards {
+  display: flex;
+  gap: 3px;
+}
+
+.foldedBadge {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #e74c3c;
+  background: #1a1020;
+  border: 1px solid #e74c3c;
+  padding: 1px 4px;
+  border-radius: 0 8px 0 6px;
+}
+
+// ── Cards ────────────────────────────────────────────────────────────────────
+.cardGroup {
+  display: flex;
+  gap: 3px;
+}
+
+.card {
+  font-size: 0.85rem;
+  font-weight: 900;
+  background: #1e2535;
+  border-radius: 4px;
+  padding: 3px 5px;
+  line-height: 1.2;
+  border: 1px solid #2d3a50;
+  letter-spacing: -0.3px;
+}
+
+.cardHighlighted {
+  background: #1a2e1a;
+  border-color: var(--gold);
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.25);
+}
+
+.cardUnknown {
+  color: #4a5568 !important;
+}
+
+.noCards {
+  font-size: 0.75rem;
+  color: #3d4f6a;
+}
+
+// ── Streets ──────────────────────────────────────────────────────────────────
+.streets {
+  display: flex;
+  flex-direction: column;
+}
+
+.street {
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(0, 204, 51, 0.35);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.streetHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.streetLabel {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  min-width: 48px;
+}
+
+.streetPot {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.boardCards {
+  display: flex;
+  gap: 4px;
+}
+
+.actionList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.heroAction {
+  .actionPos {
+    color: #7ec8e3;
+  }
+}
+
+.actionPos {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.heroTag {
+  font-size: 0.5rem;
+  font-weight: 900;
+  color: #0d1117;
+  background: #7ec8e3;
+  padding: 1px 3px;
+  border-radius: 3px;
+}
+
+.actionVerb {
+  font-size: 0.8rem;
+  font-weight: 800;
+  min-width: 50px;
+}
+
+.verb_fold   { color: #e74c3c; }
+.verb_check  { color: #95a5a6; }
+.verb_call   { color: #5dade2; }
+.verb_limp   { color: #bdc3c7; }
+.verb_bet    { color: #f39c12; }
+.verb_raise  { color: #e67e22; }
+
+.actionAmount {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.actionCards {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.unknownCards {
+  font-size: 0.75rem;
+  color: #3d4f6a;
+  font-weight: 700;
+}
+
+// ── Showdown ─────────────────────────────────────────────────────────────────
+.showdown {
+  padding: 10px 16px 12px;
+  background: rgba(0, 255, 65, 0.03);
+  border-top: 1px solid #1a3d25;
+}
+
+.showdownLabel {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.showdownPlayers {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.showdownRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.showdownPos {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+// ── Footer ───────────────────────────────────────────────────────────────────
+.footer {
+  padding: 6px 16px;
+  text-align: right;
+  font-size: 0.6rem;
+  color: #2d3a50;
+  font-weight: 600;
+  background: #0a0e14;
+  letter-spacing: 0.5px;
+}

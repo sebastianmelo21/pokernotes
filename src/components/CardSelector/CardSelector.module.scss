@@ -1,0 +1,155 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 200;
+  padding: 0;
+}
+
+.modal {
+  background: var(--bg-modal);
+  border-radius: var(--radius) var(--radius) 0 0;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90dvh;
+  overflow-y: auto;
+  padding: 20px 16px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.closeBtn {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  padding: 4px 8px;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: -8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid #252d3d;
+  border-radius: 6px;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  font-weight: 700;
+  font-size: 0.65rem;
+  line-height: 1.1;
+  transition: background 0.1s, border-color 0.1s, opacity 0.1s;
+  min-height: 36px;
+  justify-content: center;
+
+  &:active:not(:disabled) {
+    opacity: 1;
+  }
+}
+
+.cardRank {
+  font-size: 0.75rem;
+}
+
+.cardSuit {
+  font-size: 0.7rem;
+}
+
+.selected {
+  background: var(--felt-green);
+  border-color: var(--gold);
+  box-shadow: 0 0 6px rgba(0, 255, 65, 0.4);
+}
+
+.used {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.unknownBtn {
+  flex: 1;
+  padding: 14px;
+  background: #252d3d;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+
+  &:active {
+    opacity: 1;
+    background: #303a50;
+  }
+}
+
+.confirmBtn {
+  flex: 1;
+  padding: 14px;
+  background: var(--gold);
+  color: #0d1117;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+
+  &:disabled {
+    background: #3d4f6a;
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  &:active:not(:disabled) {
+    background: var(--gold-light);
+    opacity: 1;
+  }
+}
+
+.preview {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.previewCard {
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--bg-card);
+  border: 1px solid #3d4f6a;
+  border-radius: 8px;
+  padding: 6px 12px;
+  min-width: 52px;
+  text-align: center;
+}

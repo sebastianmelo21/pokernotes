@@ -41,6 +41,12 @@
   gap: 20px;
 }
 
+.btnRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .createBtn {
   width: 100%;
   padding: 18px;
@@ -54,6 +60,25 @@
   &:active {
     background: var(--gold-light);
     transform: scale(0.98);
+    opacity: 1;
+  }
+}
+
+.handBtn {
+  width: 100%;
+  padding: 18px;
+  background: transparent;
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: 2px solid var(--gold);
+  transition: background 0.15s, transform 0.1s;
+
+  &:active {
+    background: rgba(0, 255, 65, 0.1);
+    transform: scale(0.98);
+    opacity: 1;
   }
 }
 
@@ -161,3 +186,29 @@
   color: var(--text-secondary);
   padding: 40px;
 }
+
+// ── Manos guardadas ───────────────────────────────────────────────────────────
+.handsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.handStatus {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.handPot { color: #2ecc71; font-weight: 700; }
+
+.statusDone    { color: var(--gold); }
+.statusInProgress { color: #5dade2; }
+.statusSetup   { color: var(--text-secondary); }
