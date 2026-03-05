@@ -28,6 +28,27 @@ function formatCards(cards: [Card, Card] | null): React.ReactNode {
   });
 }
 
+function formatAmount(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1).replace('.0', '')}M`;
+  if (n >= 1_000) return `${(n / 1_000).toFixed(1).replace('.0', '')}k`;
+  return n.toString();
+}
+
+function currentStreetBets(hand: HandData): Record<number, number> {
+  const stateToStreet: Record<string, keyof typeof hand.actions> = {
+    PREFLOP: 'preflop', FLOP: 'flop', TURN: 'turn', RIVER: 'river',
+  };
+  const street = stateToStreet[hand.state];
+  if (!street) return {};
+  const bets: Record<number, number> = {};
+  for (const a of hand.actions[street]) {
+    if (a.amount != null) {
+      bets[a.position] = (bets[a.position] ?? 0) + a.amount;
+    }
+  }
+  return bets;
+}
+
 export default function HandTable({
   hand,
   onSelectHero,
@@ -37,6 +58,8 @@ export default function HandTable({
 }: HandTableProps) {
   const isSelectHero = hand.state === 'SELECT_HERO';
   const isSelectRivals = hand.state === 'SELECT_RIVALS';
+
+  const streetBets = currentStreetBets(hand);
 
   // Fixed 10-seat layout, no rotation
   const dealerPos = getDealerPosition(POSITION_COUNT, 0);
@@ -88,27 +111,45 @@ export default function HandTable({
         const isSelectable =
           (isSelectHero) ||
           (isSelectRivals && pos !== hand.heroPosition);
+        const streetBet = streetBets[pos] ?? 0;
+
+        // Chip position: 38% of the way from seat toward center (50%, 50%)
+        const seatL = parseFloat(posStyle.left);
+        const seatT = parseFloat(posStyle.top);
+        const chipLeft = `${seatL + (50 - seatL) * 0.38}%`;
+        const chipTop = `${seatT + (50 - seatT) * 0.38}%`;
 
         return (
-          <div
-            key={pos}
-            className={styles.seatWrapper}
-            style={{ left: posStyle.left, top: posStyle.top }}
-          >
-            <HandSeat
-              position={pos}
-              positionName={POSITIONS[pos]}
-              isHero={isHero}
-              isInHand={isInHand}
-              isFolded={!!isFolded}
-              isRivalSelected={!!isRivalSelected}
-              isCurrentTurn={isCurrentTurn}
-              isSelectable={isSelectable}
-              cards={player?.cards ?? null}
-              showCards={!isSelectHero && !isSelectRivals}
-              onTap={() => handleSeatClick(pos)}
-            />
-          </div>
+          <React.Fragment key={pos}>
+            <div
+              className={styles.seatWrapper}
+              style={{ left: posStyle.left, top: posStyle.top }}
+            >
+              <HandSeat
+                position={pos}
+                positionName={POSITIONS[pos]}
+                isHero={isHero}
+                isInHand={isInHand}
+                isFolded={!!isFolded}
+                isRivalSelected={!!isRivalSelected}
+                isCurrentTurn={isCurrentTurn}
+                isSelectable={isSelectable}
+                cards={player?.cards ?? null}
+                showCards={!isSelectHero && !isSelectRivals}
+                stack={player?.stack ?? null}
+                onTap={() => handleSeatClick(pos)}
+              />
+            </div>
+            {streetBet > 0 && !isFolded && (
+              <div
+                className={styles.betChipWrapper}
+                style={{ left: chipLeft, top: chipTop }}
+              >
+                <span className={styles.chipDot}>●</span>
+                <span>{formatAmount(streetBet)}</span>
+              </div>
+            )}
+          </React.Fragment>
         );
       })}
     </div>
@@ -128,6 +169,7 @@ interface HandSeatProps {
   isSelectable: boolean;
   cards: [Card, Card] | null;
   showCards: boolean;
+  stack: number | null;
   onTap: () => void;
 }
 
@@ -141,6 +183,7 @@ function HandSeat({
   isSelectable,
   cards,
   showCards,
+  stack,
   onTap,
 }: HandSeatProps) {
   const avatarClass = [
@@ -169,6 +212,7 @@ function HandSeat({
           <span className={styles.posNum}>{positionName}</span>
         )}
       </div>
+      {stack != null && <span className={styles.stackLabel}>{formatAmount(stack)}</span>}
       {isHero && <span className={styles.labelMine}>Héroe</span>}
       {showCards && cards && (
         <span className={styles.cardLabel}>{formatCards(cards)}</span>

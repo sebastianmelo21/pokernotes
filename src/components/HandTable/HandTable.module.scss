@@ -240,6 +240,41 @@
   line-height: 1;
 }
 
+.stackLabel {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.55);
+  padding: 1px 4px;
+  border-radius: 3px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ─── Bet chip floating inside felt ──────────────────────────────────────── */
+.betChipWrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.5rem;
+  font-weight: 800;
+  color: #f1c40f;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(241, 196, 15, 0.55);
+  padding: 2px 5px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.chipDot {
+  font-size: 0.5rem;
+  color: #e67e22;
+}
+
 /* ─── Animations ──────────────────────────────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
