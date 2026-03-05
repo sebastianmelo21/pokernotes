@@ -91,6 +91,21 @@ export default function BettingRound({
   const parsedAmount = parseInt(amountInput, 10);
   const amountValid = !isNaN(parsedAmount) && parsedAmount > 0;
 
+  const POT_PCTS = [25, 33, 50, 75, 100, 125];
+  const RAISE_MULTIPLIERS = [2, 2.2, 2.5, 3, 4, 5];
+
+  function handlePctBtn(pct: number) {
+    if (!hand.pot) return;
+    const val = Math.round((hand.pot * pct) / 100);
+    setAmountInput(val.toString());
+  }
+
+  function handleMultiplierBtn(mult: number) {
+    if (!currentBet) return;
+    const val = Math.round(currentBet * mult);
+    setAmountInput(val.toString());
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.topRow}>
@@ -123,6 +138,24 @@ export default function BettingRound({
           <p className={styles.amountLabel}>
             {actionLabels[pendingAction]} — ingresá el monto
           </p>
+          {pendingAction === 'bet' && hand.pot > 0 && (
+            <div className={styles.pctBtns}>
+              {POT_PCTS.map((pct) => (
+                <button key={pct} className={styles.pctBtn} onClick={() => handlePctBtn(pct)}>
+                  {pct}%
+                </button>
+              ))}
+            </div>
+          )}
+          {pendingAction === 'raise' && currentBet > 0 && (
+            <div className={styles.pctBtns}>
+              {RAISE_MULTIPLIERS.map((mult) => (
+                <button key={mult} className={styles.pctBtn} onClick={() => handleMultiplierBtn(mult)}>
+                  x{mult}
+                </button>
+              ))}
+            </div>
+          )}
           <div className={styles.amountRow}>
             <input
               className={styles.amountInput}
